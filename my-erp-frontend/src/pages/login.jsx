@@ -14,7 +14,7 @@ import axios from 'axios'
     const handleSubmit = async (e) => {
        
         e.preventDefault();
-        const formData = new FormData(e.target);
+            const formData = new FormData(e.target);
             const username = formData.get("username");
             const password = formData.get("password");
           try {
@@ -40,7 +40,7 @@ import axios from 'axios'
 
         <div className="min-w-full flex flex-row items-center justify-center h-screen  ">
 
-            <div className="flex flex-col gap-2  items-center justify-center w-1/2 h-full bg-gradient-to-b from-blue-500 via-blue-600 to-blue-900 ">
+            <div className="flex flex-col gap-2  items-center justify-center w-1/2 h-full bg-gradient-to-b from-sky-400 via-blue-600 to-purple-900 rounded-r-4xl">
                 <div className="flex flex-col  items-center justify-center w-2/3 h-full ">
                     <span className="svg-icon svg-icon-2hx svg-icon-primary mb-24">
                         <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#FFFF55"><path d="M658-648v-132H302v132h-60v-192h476v192h-60Zm-518 60h680-680Zm599 95q12 0 21-9t9-21q0-12-9-21t-21-9q-12 0-21 9t-9 21q0 12 9 21t21 9Zm-81 313v-192H302v192h356Zm60 60H242v-176H80v-246q0-45.05 30.5-75.53Q141-648 186-648h588q45.05 0 75.53 30.47Q880-587.05 880-542v246H718v176Zm102-236v-186.21Q820-562 806.78-575q-13.23-13-32.78-13H186q-19.55 0-32.77 13.22Q140-561.55 140-542v186h102v-76h476v76h102Z" /></svg>
@@ -55,10 +55,10 @@ import axios from 'axios'
                 </div>
             </div>
 
-            <div className="flex flex-col text-center items-center justify-center w-1/2 h-screen bg-transparent">
-                <div className="flex flex-col  items-center justify-center w-3/5 h-4/6 backdrop:blur-lg rounded-lg  shadow-lg">
-                    <div className="flex flex-col gap-8  items-center justify-center w-4/5 h-5/6">
-                       <div className="w-full max-w-md">
+            <div className="flex flex-col text-center  bg-transparent items-center justify-center w-1/2 h-screen">
+                <div className="flex flex-col  items-center justify-center w-4/5 h-5/6 bg-white backdrop:blur-lg rounded-lg  shadow-lg">
+                    <div className="flex flex-col gap-8 mb-5 items-center justify-center w-4/5 h-5/6">
+                       <div className="w-full max-w-md ">
                         <h2 className="text-3xl font-extrabold text-left">
                            WELCOME BACK !
                         </h2>
@@ -104,7 +104,7 @@ import axios from 'axios'
                         </div>
 
 
-                        <button onClick={handleSubmit} className="max-w-md mt-5 bg-sky-500 hover:bg-sky-700 text-lg hover:-translate-y-0.5 w-full  text-white font-bold py-2 px-4 rounded-md">
+                        <button onClick={handleSubmit} className="max-w-md mt-5 bg-sky-500 hover:bg-sky-700 text-lg hover:scale-103 hover:-translate-y-0.5 w-full transition-all duration-200 ease-in  text-white font-bold py-2 px-4 rounded-md">
                             Sign In
                         </button>
                     </form>
