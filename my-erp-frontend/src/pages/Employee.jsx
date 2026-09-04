@@ -1,4 +1,6 @@
 import {PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/16/solid";
+import {useState} from "react";
+import EmployeeModel from "../components/EmployeeModel.jsx";
 
 const employees = [
   { name: "Sarah Jenkins", email: "s.jenkins@corperp.com", role: "Senior Frontend Engineer", department: "Engineering", status: "Active", initials: "SJ", color: "bg-amber-100 text-amber-800" },
@@ -7,16 +9,25 @@ const employees = [
   { name: "Amanda Lee", email: "a.lee@corperp.com", role: "Backend Engineer", department: "Engineering", status: "Active", initials: "AL", color: "bg-amber-700 text-white" },
 ];
 
+
 function Employee() {
+
+  const [openModel , setOpenModel ] = useState(false)
+
   return (
     <div className="mx-4 mt-5 w-auto md:mx-6 ">
       <div className="mb-6 flex items-center justify-between">
         <p className="text-sm " style={{color:"var(--secondary-text-color)"}}>Manage all employee profiles</p>
-        <button className="flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700">
+        <button onClick={()=> setOpenModel(true)} className="flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700">
           <PlusIcon className="size-5" />
           Add Employee
         </button>
       </div>
+      {openModel && (
+          <EmployeeModel
+              onClose={() => setOpenModel(false)}
+          />
+      )}
 
       <div className="overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm">
         <table className= "w-full table-fixed text-left text-[2px] text-slate-700">
@@ -66,6 +77,8 @@ function Employee() {
         </table>
       </div>
     </div>
+
+
   );
 }
 

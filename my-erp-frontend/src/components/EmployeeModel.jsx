@@ -1,11 +1,35 @@
 import { XMarkIcon, PhotoIcon, ArrowUpTrayIcon } from "@heroicons/react/24/outline";
+import {useState, useRef} from "react";
+import swal from "sweetalert2";
 
 function EmployeeModel({ onClose }) {
+  const [empImage, setEmpImage] = useState(null);
+  const fileInputImage = useRef(null);
+
+  function handleFileInput(){
+    fileInputImage.current.click();
+  }
+
+  function handleInputChange(e){
+    const file = e.target.files[0];
+    if(!(file.type === "image/jpeg")){
+      console.error("not an image");
+      swal.fire({
+        title:" Type Mismatch",
+        text: "Please upload an image",
+        icon: "warning",
+      })
+    }
+    if (file) {
+      console.log(file);
+      console.log(file.name);
+    }
+  }
   return (
     /* Backdrop */
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm overflow-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm ">
       {/* Modal Card */}
-      <div className="relative min-h-3/4 min-w-3/5 max-w-md bg-white rounded-2xl shadow-2xl p-6 mx-4">
+      <div className="relative h-[80%] min-w-[60%] max-w-md bg-white rounded-2xl shadow-2xl p-6 mx-4 overflow-y-scroll">
 
         {/* Header */}
         <div className="flex items-start justify-between mb-1">
@@ -26,6 +50,7 @@ function EmployeeModel({ onClose }) {
         {/* Profile Photo */}
         <div className="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-5 mt-3">
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 text-gray-400 flex-shrink-0">
+
             <PhotoIcon className="w-6 h-6" />
           </div>
           <div className="flex-1 min-w-0">
@@ -34,9 +59,10 @@ function EmployeeModel({ onClose }) {
               PNG, JPG or WEBP up to 5MB. Square aspect ratio recommended.
             </p>
           </div>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors bg-white flex-shrink-0">
+          <button onClick={handleFileInput} className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors bg-white flex-shrink-0">
             <ArrowUpTrayIcon className="w-3.5 h-3.5" />
             Upload
+            <input ref={fileInputImage} onChange={handleInputChange} type="file" className={`hidden`} />
           </button>
         </div>
 
@@ -134,6 +160,31 @@ function EmployeeModel({ onClose }) {
                   id="single"
                   name="maritalstatus"
                   className="text-sm bg-white "
+              />
+            </div>
+          </div>
+
+        </div>
+        {/*Emergency contact*/}
+        <p className="text-xs font-bold tracking-widest text-blue-600 mb-3 uppercase">
+          Emergency Contact Details
+        </p>
+        <div>
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Contact Person's Name</label>
+              <input
+                  type="text"
+                  placeholder="e.g. Alex"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1">Contact No</label>
+              <input
+                  type="tel"
+                  placeholder="e.g. +94 70 1234567"
+                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               />
             </div>
           </div>
