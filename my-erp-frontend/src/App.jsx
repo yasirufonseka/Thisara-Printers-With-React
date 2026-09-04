@@ -6,6 +6,7 @@ import Production from "./pages/Production.jsx";
 import Employee from "./pages/Employee.jsx";
 import Layout from "./components/layout.jsx";
 import Login from './pages/login.jsx';
+import EmployeeModel from './components/EmployeeModel.jsx';
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
             <Route path="/payments" element="{<Payments/>}" />
             <Route path="/reports" element="" />
             <Route path="/employees" element={<Employee/>} />
+            
         </Route>
+        <Route path="/empModel" element={<EmployeeModel/>}/>
         </Routes>
 
     </BrowserRouter>

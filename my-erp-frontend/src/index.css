@@ -1,25 +1,21 @@
 @import "tailwindcss";
-/* 
+
 :root {
   --primary-color: #0081D1;
   --secondary-color: #FFCC00;
   --accent-color: #4a5568;
   --text-color: #050505;
-  --background-color: #f7fafc;
+  --secondary-text-color: #121C2A;
+  --background-color: #EAF1FF;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',"Roboto",
     sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',"Roboto", "Oxygen",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,16 +24,19 @@ html, body {
 }
 
 body {
-  line-height: 1.6;
+  color: var(--text-color);
+  cursor: pointer;
+
+
 }
 
 button {
   cursor: pointer;
   border: none;
   font-family: inherit;
-  transition: all 0.3s ease;
+
 }
 
 input, textarea, select {
   font-family: inherit;
-} */
+}

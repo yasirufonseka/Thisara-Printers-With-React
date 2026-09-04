@@ -1,4 +1,4 @@
-import { EllipsisHorizontalIcon, PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/16/solid";
+import {PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/16/solid";
 
 const employees = [
   { name: "Sarah Jenkins", email: "s.jenkins@corperp.com", role: "Senior Frontend Engineer", department: "Engineering", status: "Active", initials: "SJ", color: "bg-amber-100 text-amber-800" },
@@ -11,9 +11,9 @@ function Employee() {
   return (
     <div className="mx-4 mt-5 w-auto md:mx-6 ">
       <div className="mb-6 flex items-center justify-between">
-        <p className="text-sm text-slate-500">Manage all employee profiles</p>
+        <p className="text-sm " style={{color:"var(--secondary-text-color)"}}>Manage all employee profiles</p>
         <button className="flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700">
-          <PlusIcon className="size-5  " />
+          <PlusIcon className="size-5" />
           Add Employee
         </button>
       </div>
@@ -32,7 +32,7 @@ function Employee() {
           <tbody className="divide-y divide-slate-100">
             {employees.map((employee) => (
               <tr key={employee.email} className="hover:bg-slate-50">
-                <td className="px-3 py-3">hrllo
+                <td className="px-3 py-3">
                   <div className="flex items-center gap-3">
                     <div className={`flex size-7 shrink-0 items-center justify-center rounded-full text-[9px] font-bold ${employee.color}`}>
                       {employee.initials}

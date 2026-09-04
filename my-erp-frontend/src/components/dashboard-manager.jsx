@@ -8,8 +8,8 @@ function DashBoard() {
     return (
         <div className="dashboard flex flex-col w-full h-full bg-transparent">
             <div className="flex flex-col gap-2 p-2">
-                <h1 className="text-2xl pt-5 ps-5 font-bold ">Welcome Back! {user}</h1>
-                <p className="text-md text-gray-600 ps-5">These are the trends until today.</p>
+                <h1 className="text-2xl pt-5 ps-5 font-bold " >Welcome Back! {user}</h1>
+                <p className="text-md  ps-5" style={{color:"var(--secondary-text-color)"}}>These are the trends until today.</p>
             </div>
             {/* CARD SECTION */}
             <div className="stat-cards flex flex-row justify-between gap-2 p-2 ">
