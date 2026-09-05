@@ -3,8 +3,8 @@ import {useState, useRef} from "react";
 import swal from "sweetalert2";
 
 function EmployeeModel({ onClose }) {
-  const [empImage, setEmpImage] = useState(null);
   const fileInputImage = useRef(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
   function handleFileInput(){
     fileInputImage.current.click();
@@ -12,15 +12,24 @@ function EmployeeModel({ onClose }) {
 
   function handleInputChange(e){
     const file = e.target.files[0];
-    if(!(file.type === "image/jpeg")){
-      console.error("not an image");
+    if(!(file.type === "image/jpeg") && !(file.type === "image/png") ){
+      console.error("not an image"+ file.type);
       swal.fire({
         title:" Type Mismatch",
         text: "Please upload an image",
         icon: "warning",
       })
     }
+    if(file.size > 5*1024*1024){
+      swal.fire({
+        title:"Large File",
+        text:"please use less than 5MB file size",
+        icon: "error",
+      })
+    }
     if (file) {
+      const objectURL = URL.createObjectURL(file);
+      setPreviewImage(objectURL);
       console.log(file);
       console.log(file.name);
     }
@@ -50,8 +59,10 @@ function EmployeeModel({ onClose }) {
         {/* Profile Photo */}
         <div className="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 mb-5 mt-3">
           <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 text-gray-400 flex-shrink-0">
+            {previewImage ? (
+                    <img src={previewImage} alt="Selected Image" className={`rounded-full object-cover w-full h-full`}/>
+            ):(<PhotoIcon className="w-6 h-6" />)}
 
-            <PhotoIcon className="w-6 h-6" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-gray-700">Profile Photo</p>
