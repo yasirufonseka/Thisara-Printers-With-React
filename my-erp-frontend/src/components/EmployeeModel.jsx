@@ -1,7 +1,9 @@
 import { XMarkIcon, PhotoIcon, ArrowUpTrayIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { useState, useRef } from "react";
 import {format} from "date-fns";
+import { useQuery } from "@tanstack/react-query";
 import swal from "sweetalert2";
+import axios from "axios";
 
 function EmployeeModel({ onClose }) {
   const fileInputImage = useRef(null);
@@ -52,10 +54,10 @@ function EmployeeModel({ onClose }) {
         return;
       }
 
-      if (file.size > 5 * 1024 * 1024) {
+      if (file.size > 2 * 1024 * 1024) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          image: "File size exceeds the 5MB limit.",
+          image: "File size exceeds the 2MB limit.",
         }));
         setPreviewImage(null);
         return;
@@ -221,9 +223,22 @@ function EmployeeModel({ onClose }) {
 
     }
 
-    
-   
+    //validate marital status
+    if(name === "maritalstatus"){
+      if(value === ""){
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          maritalstatus: "Please select a marital status"
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          maritalstatus: ""
+        }));
+      }
+    }
 
+    
 
     //update normal input values
     setFormData((prevFormData) => ({
@@ -235,6 +250,9 @@ function EmployeeModel({ onClose }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Submitted employee form:", formData);
+
+
+    
   }
   return (
     /* Backdrop */
@@ -275,7 +293,7 @@ function EmployeeModel({ onClose }) {
             <button onClick={handleFileInput} type="button" className="flex items-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors bg-white flex-shrink-0">
               <ArrowUpTrayIcon className="w-3.5 h-3.5" />
               Upload
-              <input ref={fileInputImage} value={formData.image} onChange={handleInputChange} type="file" className={`hidden`} />
+              <input ref={fileInputImage} name="image" accept="image/jpeg,image/png" onChange={handleInputChange} type="file" className={`hidden`} />
             </button>
 
           </div>
@@ -298,6 +316,7 @@ function EmployeeModel({ onClose }) {
                 placeholder="e.g. Alex"
                 value={formData.firstName}
                 onChange={handleInputChange}
+                required
                 className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               />
               <div className="mb-5 mt-1 text-red-600 font-extralight font-mono text-sm error">
